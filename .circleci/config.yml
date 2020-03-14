@@ -9,6 +9,11 @@ jobs:
           mentions: 'PraveenK'
           message: This is a custom message notification
           webhook: ${SLACK_WEBHOOK_URL}
+      - slack/status:
+          channel: circleci-prod-deployments-public
+          fail_only: false
+          mentions: 'praveen.kuninti'
+          webhook: ${SLACK_WEBHOOK_URL}
 orbs:
   slack: circleci/slack@3.4.2
 version: 2.1
