@@ -3,17 +3,16 @@ jobs:
     docker:
       - image: circleci/node:10
     steps:
-      - slack/notify:
-          channel: circleci-staging-deployments-private
-          color: '#42e2f4'
-          mentions: 'PraveenK'
-          message: This is a custom message notification
-          webhook: ${SLACK_WEBHOOK_URL}
+      - run: echo "hello world" 
+  notify:
+    docker:
+      - image: circleci/node:10
+    steps:
       - slack/status:
           channel: circleci-prod-deployments-public
           fail_only: false
           mentions: 'praveen.kuninti'
-          success_message: ':red_circle: A $CIRCLE_JOB job has failed!'
+          success_message: ':tada: Staging deployment successfule for pull request ${CIRCLE_PULL_REQUEST}'
           webhook: ${SLACK_WEBHOOK_URL}
 orbs:
   slack: circleci/slack@3.4.2
@@ -21,5 +20,6 @@ version: 2.1
 workflows:
   your-workflow:
     jobs:
-      - build:
+      - build
+      - notify:
          context: slack
