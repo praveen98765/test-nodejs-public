@@ -13,6 +13,7 @@ jobs:
           channel: circleci-prod-deployments-public
           fail_only: false
           mentions: 'praveen.kuninti'
+          success_message: "The staging deployment is success"
           webhook: ${SLACK_WEBHOOK_URL}
 orbs:
   slack: circleci/slack@3.4.2
