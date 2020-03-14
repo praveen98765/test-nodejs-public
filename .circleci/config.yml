@@ -4,7 +4,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - slack/notify:
-          channel: circleci-staging-deployment-private
+          channel: circleci-staging-deployments-private
           color: '#42e2f4'
           mentions: 'PraveenK'
           message: This is a custom message notification
