@@ -12,7 +12,7 @@ jobs:
           channel: circleci-prod-deployments-public
           fail_only: false
           mentions: 'praveen.kuninti'
-          success_message: ':tada: Staging deployment successfule for pull request ${CIRCLE_PULL_REQUEST}'
+          success_message: ':tada: Staging deployment successfule for pull request $CIRCLE_PULL_REQUEST'
           webhook: ${SLACK_WEBHOOK_URL}
 orbs:
   slack: circleci/slack@3.4.2
