@@ -8,11 +8,12 @@ jobs:
           color: '#42e2f4'
           mentions: 'PraveenK'
           message: This is a custom message notification
-          webhook: webhook
+          webhook: ${SLACK_WEBHOOK_URL}
 orbs:
   slack: circleci/slack@3.4.2
 version: 2.1
 workflows:
   your-workflow:
     jobs:
-      - build
+      - build:
+         context: slack
