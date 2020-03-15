@@ -5,9 +5,15 @@ jobs:
       - image: circleci/node:10
     steps:
       - checkout
+  notify:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - run: echo "hello"
 
 workflows:
   build_notify:
     jobs:
       - build
+      - notify  
       
