@@ -18,14 +18,19 @@ jobs:
         type: string
         default: circleci-prod-deployments-public
     steps:
-      - run: echo << parameters.slackChannel >>
+      - slack/status:
+          channel: << parameters.slackChannel >>
+          fail_only: false
+          mentions: 'praveenk'
+          success_message: Staging deployment successful for commit $CIRCLE_SHA1 
+          webhook: ${SLACK_WEBHOOK_URL}
   
 workflows:
   build_notify:
     jobs:
       - build
       - notify:
-          slackChannel: test
+          slackChannel: circleci-staging-deployments-private
           requires:
             - build
       
