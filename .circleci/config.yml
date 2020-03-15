@@ -22,7 +22,7 @@ jobs:
           channel: << parameters.slackChannel >>
           fail_only: false
           mentions: 'praveenk'
-          success_message: Staging deployment successful for commit $CIRCLE_SHA1 
+          success_message: "Staging deployment successful for commit $CIRCLE_SHA1"
           webhook: ${SLACK_WEBHOOK_URL}
   
 workflows:
@@ -31,6 +31,7 @@ workflows:
       - build
       - notify:
           slackChannel: circleci-staging-deployments-private
+          context: slack
           requires:
             - build
       
