@@ -18,7 +18,9 @@ jobs:
         type: string
         default: circleci-prod-deployments-public
     steps:
-      - run: export COMMIT_ID=1234
+      - run: 
+          name: Export local values
+          command: echo "export COMMIT_ID=1234" >> $BASH_ENV; source $BASH_ENV
       - run: env
       - slack/status:
           channel: << parameters.slackChannel >>
