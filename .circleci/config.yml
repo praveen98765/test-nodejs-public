@@ -12,6 +12,7 @@ jobs:
       - run: echo "hello"
 
 workflows:
+  version: 2.1
   build_notify:
     jobs:
       - build
