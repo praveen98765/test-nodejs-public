@@ -16,5 +16,4 @@ workflows:
   build_notify:
     jobs:
       - build
-      - notify  
       
