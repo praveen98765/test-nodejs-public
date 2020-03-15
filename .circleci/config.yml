@@ -1,18 +1,20 @@
-version: 2
-jobs:
-  build:
+version: 2.1
+executors:
+  nodejs:
     docker:
       - image: circleci/node:10
+jobs:
+  build:
+    executor: nodejs
     steps:
       - checkout
   notify:
-    docker:
-      - image: circleci/node:10
+    executor: nodejs
     steps:
       - run: echo "hello"
+  
 
 workflows:
-  version: 2
   build_notify:
     jobs:
       - build
