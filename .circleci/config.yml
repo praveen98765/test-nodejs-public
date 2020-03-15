@@ -5,6 +5,7 @@ jobs:
       - image: circleci/node:10
     steps:
       - run: echo "hello world" 
+      - run: env
       - checkout
   notify:
     docker:
