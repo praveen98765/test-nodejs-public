@@ -18,12 +18,13 @@ jobs:
         type: string
         default: circleci-prod-deployments-public
     steps:
-      - run: export COMMIT_ID=$(echo $CIRCLE_SHA1 | cut -c -7)
+      - run: export COMMIT_ID=1234
+      - run: env
       - slack/status:
           channel: << parameters.slackChannel >>
           fail_only: false
           mentions: 'praveenk'
-          success_message: "Staging deployment successful for commit $COMMIT_ID"
+          success_message: Staging deployment successful for commit $COMMIT_ID
           webhook: ${SLACK_WEBHOOK_URL}
   
 workflows:
