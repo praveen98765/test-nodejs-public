@@ -23,7 +23,8 @@ jobs:
           command: |
             COMMIT_ID=$(echo $CIRCLE_SHA1 | cut -c -7)
             COMMIT_LINK="https://github.com/praveen98765/${CIRCLE_PROJECT_REPONAME}/commit/${COMMIT_ID}"
-            echo "export SLACK_MESSAGE=$COMMIT_LINK" >> $BASH_ENV; source $BASH_ENV
+            SLACK_DEPLOYMENT_TEXT="Tag <$COMMIT_LINK|$COMMIT_ID}> has just been deployed to *${CIRCLE_PROJECT_REPONAME}* in *staging*"
+            echo "export SLACK_MESSAGE=$SLACK_DEPLOYMENT_TEXT" >> $BASH_ENV; source $BASH_ENV
       - run: env
       - slack/status:
           channel: << parameters.slackChannel >>
