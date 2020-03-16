@@ -28,7 +28,7 @@ jobs:
       - run: env
       - slack/notify:
           channel: << parameters.slackChannel >>
-          mentions: 'praveenk,praveen.kuninti'
+          mentions: 'praveenk,praveen.kuninti,PraveenK'
           message: $SLACK_MESSAGE
           include_job_number_field: false
           include_project_field: false
