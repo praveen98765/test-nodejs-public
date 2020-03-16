@@ -20,13 +20,16 @@ jobs:
     steps:
       - run: 
           name: Export local values
-          command: echo "export COMMIT_ID=$(echo $CIRCLE_SHA1 | cut -c -7)" >> $BASH_ENV; source $BASH_ENV
+          command: |
+            COMMIT_ID=$(echo $CIRCLE_SHA1 | cut -c -7)
+            COMMIT_LINK="https://github.com/praveen98765/${CIRCLE_PROJECT_REPONAME}/commit/${COMMIT_ID}"
+            echo "export SLACK_MESSAGE=$COMMIT_LINK" >> $BASH_ENV; source $BASH_ENV
       - run: env
       - slack/status:
           channel: << parameters.slackChannel >>
           fail_only: false
           mentions: 'praveenk'
-          success_message: Staging deployment successful for commit $COMMIT_ID
+          success_message: $SLACK_MESSAGE
           webhook: ${SLACK_WEBHOOK_URL}
   
 workflows:
