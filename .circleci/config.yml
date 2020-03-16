@@ -25,7 +25,8 @@ jobs:
             COMMIT_LINK="https://github.com/praveen98765/${CIRCLE_PROJECT_REPONAME}/commit/${COMMIT_ID}"
             SLACK_DEPLOYMENT_TEXT="Tag $COMMIT_LINK has just been deployed to ${CIRCLE_PROJECT_REPONAME} in staging"
             DEPLOYMENT_TEXT = $(echo -n $SLACK_DEPLOYMENT_TEXT | base64 -w 0)
-            echo "export SLACK_MESSAGE=${DEPLOYMENT_TEXT}" >> $BASH_ENV; source $BASH_ENV
+            MSG=`echo DEPLOYMENT_TEXT | base64 --decode`
+            echo "export SLACK_MESSAGE=$MSG" >> $BASH_ENV; source $BASH_ENV
       - run: env
       - slack/status:
           channel: << parameters.slackChannel >>
