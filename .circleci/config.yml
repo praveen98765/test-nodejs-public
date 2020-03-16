@@ -23,16 +23,15 @@ jobs:
           command: |
             COMMIT_ID=$(echo $CIRCLE_SHA1 | cut -c -7)
             COMMIT_LINK="https://github.com/praveen98765/${CIRCLE_PROJECT_REPONAME}/commit/${COMMIT_ID}"
-            SLACK_DEPLOYMENT_TEXT="Tag <$COMMIT_LINK|$CIRCLE_TAG> has just been deployed to ${CIRCLE_PROJECT_REPONAME} in *staging*"
-            DEPLOYMENT_TEXT=$(echo -n $SLACK_DEPLOYMENT_TEXT | base64 -w 0)
-            MSG=`echo $DEPLOYMENT_TEXT | base64 --decode`
-            echo "export SLACK_MESSAGE='$MSG'" >> $BASH_ENV; source $BASH_ENV
+            SLACK_DEPLOYMENT_TEXT="Tag <$COMMIT_LINK|$CIRCLE_TAG> has just been deployed to *${CIRCLE_PROJECT_REPONAME}* in *staging*"
+            echo "export SLACK_MESSAGE='$SLACK_DEPLOYMENT_TEXT'" >> $BASH_ENV; source $BASH_ENV
       - run: env
-      - slack/status:
+      - slack/notify:
           channel: << parameters.slackChannel >>
-          fail_only: false
           mentions: 'praveenk'
-          success_message: $SLACK_MESSAGE
+          message: $SLACK_MESSAGE
+          include_job_number_field: false
+          include_project_field: false
           webhook: ${SLACK_WEBHOOK_URL}
   
 workflows:
