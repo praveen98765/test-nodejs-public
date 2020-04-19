@@ -37,6 +37,10 @@ workflows:
   build_notify:
     jobs:
       - build
+      - request-testing:
+          type: approval
+          requires:
+            - build
       - notify:
           slackChannel: circleci-staging-deployments-private
           context: slack
