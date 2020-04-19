@@ -45,5 +45,5 @@ workflows:
           slackChannel: circleci-staging-deployments-private
           context: slack
           requires:
-            - build
+            - request-testing
       
